@@ -18,9 +18,6 @@ router.get('/', function (req, res) {
    res.render('index',{ output:"",input:"", title:'app'});
 });
 router.post('/date', function (req, res) {
-   console.log("yipee");
-   //console.log(req.body);
-   
    if(req.body.input_date!=undefined && req.body.value!=undefined && req.body.input_date!= {} && req.body.value!={}) {
       input_dict.push({
          key: req.body.input_date,
@@ -31,10 +28,7 @@ router.post('/date', function (req, res) {
          value: parseInt(req.body.value)
       });
       output_dict = findOutput(input_dict);
-      
-      //console.log(moment(input_dict[0].key,'YYYY-MM-DD').add(1,'day').format('YYYY-MM-DD'));
    }
-   //console.log(input_dict);
    res.render('index',{ output:output_dict,input:actual_input, title:'app'});
 })
 function sortByProperty(property){  
@@ -43,7 +37,6 @@ function sortByProperty(property){
          return 1;  
       else if(a[property] < b[property])  
          return -1;  
-  
       return 0;  
    }  
 }
@@ -62,7 +55,6 @@ function findOutput(input_dict) {
             value: x
          });
          for(let j = 1;j<diff-1;j++) {
-            //output_dict[moment(output_dict[i].key,'YYYY-MM-DD').add(j,'day').format('YYYY-MM-DD')] = ((diff - j) * x) -((diff-j-1) * output_dict[i+1].value);
             output_dict.push({
                key: moment(output_dict[i].key,'YYYY-MM-DD').add(j,'day').format('YYYY-MM-DD'),
                value: ((diff - j) * x) -((diff-j-1) * output_dict[i+1].value)
