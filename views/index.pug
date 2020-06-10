@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+  body
+    h1 Dictionary
+    form(method='POST' action='/date')
+      label(for='input_date') Input:
+      input(type='date', name='input_date')
+      input(type='number', name='value' required)
+      input(type='submit',value='Add')
+    br
+    div  
+        h3 Input
+        table(border='1')
+            thead
+                tr
+                    th key
+                    th Value
+            tbody
+                each item in input
+                    tr.content
+                        td=item.key
+                        td=item.value
+
+        h3 Output
+        table(border='1')
+            thead
+                tr
+                    th key
+                    th Value
+            tbody
+                each item in output
+                    tr.content
+                        td=item.key
+                        td=item.value
